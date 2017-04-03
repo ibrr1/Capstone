@@ -18,7 +18,7 @@ issues <- issues[!duplicated(issues$id), ]
 labels <- labels[!duplicated(labels), ]
 
 
-# count the number of issues in each app
+# count the number of issues in each app (occurrence of repo_url in issues df)
 issues_in_apps <- data.frame(table(unlist(issues$repo_url)))
 
 # change col 1 name in issues_in_apps df from 'Var1' to 'repo_url'
@@ -74,10 +74,10 @@ as.character(issues_with_bug_label[which(duplicated(as.character(issues_with_bug
 
 
 # Merage issues df with issues_with_bug_label in a df called issues_bug
-# 1, chnage the col name in issues df from id to issue_id
+  # 1, chnage the col name in issues df from id to issue_id
 colnames(issues)[colnames(issues) == 'id'] <- 'issue_id'
 
-# 2, Merage
+  # 2, Merage
 issues_bug <- merge(issues_with_bug_label, issues, by="issue_id")
 
 # =============================================================================================
